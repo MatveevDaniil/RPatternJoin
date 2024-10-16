@@ -1,4 +1,4 @@
-#include "sim_search_part_patterns.hpp"
+#include "include/sim_search_part_patterns.hpp"
 #include <chrono>
 #include <iostream>
 
@@ -135,8 +135,6 @@ void sim_search_part_patterns(
   char metric,
   arma::sp_umat& adj_matrix
 ) {
-  int n = strings.size();
-
   str2int str2idx;
   str2ints str2idxs;
   countStrings(strings, str2idx, str2idxs);

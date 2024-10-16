@@ -2,11 +2,10 @@
 #include <string>
 #include <vector>
 #include <stdexcept>
-#include "getopt.h"
-#include "duplicates_search.hpp"
-#include "sim_search_patterns.hpp"
-#include "sim_search_semi_patterns.hpp"
-#include "sim_search_part_patterns.hpp"
+#include "include/duplicates_search.hpp"
+#include "include/sim_search_patterns.hpp"
+#include "include/sim_search_semi_patterns.hpp"
+#include "include/sim_search_part_patterns.hpp"
 
 // [[Rcpp::depends(RcppArmadillo)]]
 #include <RcppArmadillo.h>

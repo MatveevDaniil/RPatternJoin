@@ -4,13 +4,7 @@
 \alias{buildAdjacencyMatrix}
 \title{Build Adjacency Matrix}
 \usage{
-buildAdjacencyMatrix(
-  strings,
-  cutoff,
-  metric = "Levenshtein",
-  method = "partition_pattern",
-  drop_deg_one = FALSE
-)
+buildAdjacencyMatrix(strings, cutoff, metric, method, drop_deg_one)
 }
 \arguments{
 \item{strings}{Input vector of strings.}
@@ -30,9 +24,11 @@ A sparse adjacency matrix.
 Build Adjacency Matrix
 }
 \examples{
-strings <- c("AA", "AB", "CB", "DD")
-cutoff <- 1
-metric <- "Hamming"
+library(RPatternJoin)
+library(Matrix)
+strings <- c("banana", "ananas", "banuna", "ant", "cart")
+cutoff <- 2
+metric <- "Levenshtein"
 method <- "partition_pattern"
 drop_deg_one <- TRUE
 adj_matrix <- buildAdjacencyMatrix(strings, cutoff, metric, method, drop_deg_one)

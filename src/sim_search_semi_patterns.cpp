@@ -1,4 +1,4 @@
-#include "sim_search_semi_patterns.hpp"
+#include "include/sim_search_semi_patterns.hpp"
 
 void sim_search_semi_patterns(
   const std::vector<std::string>& strings,
@@ -6,8 +6,6 @@ void sim_search_semi_patterns(
   char metric,
   arma::sp_umat& adj_matrix
 ) {
-  int n = strings.size();
-
   str2int str2idx;
   str2ints str2idxs;
   countStrings(strings, str2idx, str2idxs);

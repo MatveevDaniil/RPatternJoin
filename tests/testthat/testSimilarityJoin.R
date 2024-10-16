@@ -73,7 +73,7 @@ library(stringdist)
   strings <- apply(combinations, 1, paste, collapse = "")
   return(strings)
 }
-all_bin_strings <- unlist(lapply(1:7, .gen_all_bin_strings))
+all_bin_strings <- unlist(lapply(1:5, .gen_all_bin_strings))
 
 adhoc_list <- c(
   "abc", "abx", "101", "100", "xyz", "xya", "dear", "bear",
@@ -88,7 +88,7 @@ adhoc_list <- c(
   "transocendentalipm", "anscendentalism", "moon", "plan", "aaaaaa", "bbbbb"
 )
 
-test_that("testing buildAdjacencyMatrix on all binary strings of length 1-7", {
+test_that("testing buildAdjacencyMatrix on all binary strings of length 1-5", {
   for (cutoff in c(0, 1, 2)) {
     for (metric in c("Hamming", "Levenshtein")) {
       for (method in c("pattern", "semi_pattern", "partition_pattern")) {

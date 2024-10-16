@@ -1,4 +1,4 @@
 library(testthat)
-library(your_package)
+library(RPatternJoin)
 
-test_check("RPatternJoin")
+testthat::test_check("RPatternJoin")

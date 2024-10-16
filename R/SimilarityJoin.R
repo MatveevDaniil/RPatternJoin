@@ -29,9 +29,11 @@
 #' @export
 #'
 #' @examples
-#' strings <- c("AA", "AB", "CB", "A", "AAC",  "DD")
-#' cutoff <- 1
-#' metric <- "Hamming"
+#' library(RPatternJoin)
+#' library(Matrix)
+#' strings <- c("banana", "ananas", "banuna", "ant", "cart")
+#' cutoff <- 2
+#' metric <- "Levenshtein"
 #' method <- "partition_pattern"
 #' drop_deg_one <- TRUE
 #' adj_matrix <- buildAdjacencyMatrix(strings, cutoff, metric, method, drop_deg_one)
