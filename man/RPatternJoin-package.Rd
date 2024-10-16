@@ -1,6 +1,6 @@
-\name{PatternJoin-package}
-\alias{PatternJoin-package}
-\alias{PatternJoin}
+\name{RPatternJoin-package}
+\alias{RPatternJoin-package}
+\alias{RPatternJoin}
 \docType{package}
 \title{
   String Similarity Joins for Hamming and Levenshtein Distances
@@ -12,24 +12,13 @@
   where the number of words is relatively large (10^5-10^6) and the average length of words is relatively small (~20).
 }
 \details{
-  This section should provide a more detailed overview of how to use the
-  package, including the most important functions.
-}
+  This R package serves as a wrapper for a C++ package. 
+  More information about the original C++ package can be found on GitHub at \href{https://github.com/MatveevDaniil/PatternJoin}{PatternJoin}. 
+  The package offers several similarity join algorithms, all of which can be accessed through the \code{\link[=buildAdjacencyMatrix]{buildAdjacencyMatrix}} function.}
 \author{
-Daniil Matveev.
-
-Maintainer: Daniil Matveev <dmatveev@sfsu.edu>
+Daniil Matveev <dmatveev@sfsu.edu>
 }
 \references{
-  paper in progress
+  paper is in progress 🚧🔨⏳
 }
 \keyword{ package }
-\seealso{
-  Optional links to other man pages
-}
-\examples{
-  \dontrun{
-     ## Optional simple examples of the most important functions
-     ## These can be in \dontrun{} and \donttest{} blocks.   
-  }
-}
