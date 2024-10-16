@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <cstdint>
 #include <vector>
+#include <stdexcept>
 
 bool edit_distance_k(
     std::string a, 

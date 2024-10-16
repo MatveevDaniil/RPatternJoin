@@ -14,7 +14,7 @@ void readFile(
   std::string line;
   while (std::getline(file, line)) {
     if (!line.empty() && line.back() == '\n')
-        line.pop_back();
+      line.pop_back();
     if (line == "")
       throw std::runtime_error("Empty line spotted in the input file\n");
     strings.push_back(line);
