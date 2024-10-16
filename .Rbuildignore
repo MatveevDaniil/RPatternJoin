@@ -4,6 +4,7 @@
 ^RPatternJoin\.Rproj$
 ^\.Rproj\.user$
 ^\.git$
+^\.github$
 ^\.gitignore$
 ^\.DS_Store$
 ^\.Rhistory$

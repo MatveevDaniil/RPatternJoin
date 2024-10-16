@@ -4,7 +4,7 @@
 
 ### New Features
 - Initial release of the `RPatternJoin` package.
-- Implemented string similarity joins for Hamming and Levenshtein distances and cutofs 0, 1, and 2 in buildAdjacencyMatrix function.
+- Implemented string similarity joins for Hamming and Levenshtein distances and cutoffs 0, 1, and 2 in buildAdjacencyMatrix function.
 
 ### Documentation
 - Documentation for buildAdjacencyMatrix function.

@@ -3,8 +3,10 @@ Type: Package
 Title: String Similarity Joins for Hamming and Levenshtein Distances
 Version: 1.0.0
 Date: 2024-10-11
-Author: Daniil Matveev
-Maintainer: Daniil Matveev <dmatveev@sfsu.edu>
+Authors@R: person(given = "Daniil",
+                  family = "Matveev",
+                  role = c("aut", "cre"),
+                  email = "dmatveev@sfsu.edu")
 Description: This project is a tool for words edit similarity joins (a.k.a. all-pairs similarity search) under small (< 3) edit distance constraints. It works for Levenshtein distance (deletions, insertions, substitutions) and Hamming distance (substitutions, insertions/deletions from the end). The software is specifically optimized for edit similarity joins of amino-acid sequences from TCR/BCR profiles, where the number of words is relatively large (10^5-10^6) and the average length of words is relatively small (~20).
 License: MIT + file LICENSE
 Suggests: 
@@ -17,3 +19,4 @@ LinkingTo:
     Rcpp, 
     RcppArmadillo
 RoxygenNote: 7.3.2
+Language: en-US
