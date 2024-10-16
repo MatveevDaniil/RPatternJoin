@@ -1,0 +1,10 @@
+^CRAN-SUBMISSION$
+^cran-comments\.md$
+^LICENSE\.md$
+^RPatternJoin\.Rproj$
+^\.Rproj\.user$
+^\.git$
+^\.gitignore$
+^\.DS_Store$
+^\.Rhistory$
+
