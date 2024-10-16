@@ -1,7 +1,7 @@
 Package: RPatternJoin
 Type: Package
 Title: String Similarity Joins for Hamming and Levenshtein Distances
-Version: 1.0
+Version: 1.0.0
 Date: 2024-10-11
 Author: Daniil Matveev
 Maintainer: Daniil Matveev <dmatveev@sfsu.edu>
