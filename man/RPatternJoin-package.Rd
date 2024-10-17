@@ -18,7 +18,4 @@
 \author{
 Daniil Matveev <dmatveev@sfsu.edu>
 }
-\references{
-  paper is in progress...
-}
 \keyword{ package }

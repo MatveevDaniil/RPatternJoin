@@ -4,18 +4,27 @@
 \alias{buildAdjacencyMatrix}
 \title{Build Adjacency Matrix}
 \usage{
-buildAdjacencyMatrix(strings, cutoff, metric, method, drop_deg_one)
+buildAdjacencyMatrix(
+  strings,
+  cutoff,
+  metric,
+  method,
+  drop_deg_one,
+  special_chars = TRUE
+)
 }
 \arguments{
-\item{strings}{Input vector of strings.}
+\item{strings}{Input vector of strings. To avoid hidden errors, function will give a warning if strings contain special characters. To disable this warning, change special_chars to FALSE.}
 
-\item{cutoff}{Cutoff: 0,1,2.}
+\item{cutoff}{Cutoff: 0,1,2. Algorithm will search all pairs of strings with edit distance less than or equal to the cutoff.}
 
 \item{metric}{Edit distance type: "Hamming", "Levenshtein".}
 
-\item{method}{Method: "partition_pattern", "pattern", "semi_pattern".}
+\item{method}{Method: "partition_pattern", "semi_pattern", "pattern". By default we recommend using "partition_pattern".}
 
 \item{drop_deg_one}{Drop isolated strings: TRUE, FALSE.}
+
+\item{special_chars}{Enable check for special characters in strings: TRUE, FALSE.}
 }
 \value{
 A sparse adjacency matrix.
@@ -26,10 +35,20 @@ Build Adjacency Matrix
 \examples{
 library(RPatternJoin)
 library(Matrix)
+
+## Example 1
 strings <- c("banana", "ananas", "banuna", "ant", "cart")
 cutoff <- 2
 metric <- "Levenshtein"
 method <- "partition_pattern"
 drop_deg_one <- TRUE
+adj_matrix <- buildAdjacencyMatrix(strings, cutoff, metric, method, drop_deg_one)
+
+## Example 2
+strings <- c("AB", "ABC", "ACC", "AC")
+cutoff <- 1
+metric <- "Hamming"
+method <- "semi_pattern"
+drop_deg_one <- FALSE
 adj_matrix <- buildAdjacencyMatrix(strings, cutoff, metric, method, drop_deg_one)
 }
