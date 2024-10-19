@@ -2,7 +2,7 @@
 
 ## Submission Summary
 
-This is the second submission of the `RPatternJoin-1.0.0` package to CRAN. In this submission, I addressed the concerns of the reviewer about the previous attempt. 
+This is the second submission of the `RPatternJoin-1.0.0` package to CRAN. In this submission, I addressed the concerns of the reviewer about the previous attempt (see 'Answers on review comments' section). I also rerun all previous checks (see 'Test Info' section).
 
 The package provides tools for string similarity joins for Hamming and Levenshtein distances.
 
