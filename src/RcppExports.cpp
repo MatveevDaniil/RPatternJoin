@@ -11,9 +11,9 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
-// buildAdjacencyMatrix
-Rcpp::List buildAdjacencyMatrix(const std::vector<std::string>& strings, int cutoff, char metric, std::string method, bool drop_deg_one);
-RcppExport SEXP _RPatternJoin_buildAdjacencyMatrix(SEXP stringsSEXP, SEXP cutoffSEXP, SEXP metricSEXP, SEXP methodSEXP, SEXP drop_deg_oneSEXP) {
+// similarityJoin
+Rcpp::List similarityJoin(const std::vector<std::string>& strings, int cutoff, char metric, std::string method, bool drop_deg_one, std::string output_format);
+RcppExport SEXP _RPatternJoin_similarityJoin(SEXP stringsSEXP, SEXP cutoffSEXP, SEXP metricSEXP, SEXP methodSEXP, SEXP drop_deg_oneSEXP, SEXP output_formatSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -22,13 +22,14 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< char >::type metric(metricSEXP);
     Rcpp::traits::input_parameter< std::string >::type method(methodSEXP);
     Rcpp::traits::input_parameter< bool >::type drop_deg_one(drop_deg_oneSEXP);
-    rcpp_result_gen = Rcpp::wrap(buildAdjacencyMatrix(strings, cutoff, metric, method, drop_deg_one));
+    Rcpp::traits::input_parameter< std::string >::type output_format(output_formatSEXP);
+    rcpp_result_gen = Rcpp::wrap(similarityJoin(strings, cutoff, metric, method, drop_deg_one, output_format));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_RPatternJoin_buildAdjacencyMatrix", (DL_FUNC) &_RPatternJoin_buildAdjacencyMatrix, 5},
+    {"_RPatternJoin_similarityJoin", (DL_FUNC) &_RPatternJoin_similarityJoin, 6},
     {NULL, NULL, 0}
 };
 

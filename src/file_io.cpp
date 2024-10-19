@@ -1,4 +1,6 @@
 #include "include/file_io.hpp"
+#include <iostream>
+#include <Rcpp.h>
 
 void readFile(
   const std::string& file_name,
@@ -91,6 +93,34 @@ void pairSetToAdjMatrix(
       for (auto str_idx2 : str2idxs[str2]) {
         adj_matrix(str_idx1, str_idx2) = 1;
         adj_matrix(str_idx2, str_idx1) = 1;
+      }
+  }
+}
+
+
+void pairSetToAdjPairs(
+  const int_pair_set& out,
+  std::vector<int>& adj_pairs,
+  const std::vector<std::string>& strings,
+  str2ints str2idxs
+) {
+  adj_pairs.reserve(out.size() * 2);
+  int_pair_set full_out;
+  full_out.reserve(out.size());
+  for (const auto& pair : out) {
+    std::string str1 = strings[pair.first], str2 = strings[pair.second];
+    for (auto str_idx1 : str2idxs[str1])
+      for (auto str_idx2 : str2idxs[str2]) {
+        if (full_out.find({str_idx1, str_idx2}) != full_out.end())
+          continue;
+        adj_pairs.push_back(str_idx1 + 1);
+        adj_pairs.push_back(str_idx2 + 1);
+        full_out.insert({str_idx1, str_idx2});
+        if (str_idx1 != str_idx2 && str1 != str2) {
+          adj_pairs.push_back(str_idx2 + 1);
+          adj_pairs.push_back(str_idx1 + 1);
+          full_out.insert({str_idx2, str_idx1});
+        }
       }
   }
 }

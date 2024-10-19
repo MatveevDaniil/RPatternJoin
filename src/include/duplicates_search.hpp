@@ -9,11 +9,11 @@
 
 void duplicates_search(
   const std::vector<std::string>& strings,
-  arma::sp_umat& adj_matrix
+  str2ints& str2idxs,
+  int_pair_set& out
 ) {
   int n = strings.size();
 
-  str2ints str2idxs;
   str2idxs.reserve(n);
   for (int i = 0; i < n; i++) {
     if (i % 10000 == 0)
@@ -25,7 +25,7 @@ void duplicates_search(
     Rcpp::checkUserInterrupt();
     for (auto i: entry.second)
       for (auto j: entry.second)
-        adj_matrix(i, j) = 1;
+        out.insert({i, j});
   }
 }
 

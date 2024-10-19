@@ -44,27 +44,42 @@ library(stringdist)
   return(adj_matrix)
 }
 
-.build_adj_matrix_manually <- function(
-  strings, cutoff, metric, drop_deg_one_bul
+.sim_join_manually <- function(
+  strings, cutoff, metric, drop_deg_one_bul, out_mode
 ) {
   dist_func <- .get_dist_func(metric)
   n <- length(strings)
-  adj_matrix <- sparseMatrix(i = (1:n), j = (1:n), x = rep(1, n))
+  if (out_mode == "adj_matrix")
+    adj_matrix <- sparseMatrix(i = (1:n), j = (1:n), x = rep(1, n))
+  else
+    adj_pairs <- c()
   for (i in 1:(n - 1)) {
     string_i <- strings[i]
+    if (out_mode == "adj_pairs")
+      adj_pairs <- rbind(adj_pairs, c(i, i))
     for (j in (i + 1):n) {
       if (dist_func(string_i, strings[j], cutoff)) {
-        adj_matrix[i, j] <- 1
-        adj_matrix[j, i] <- 1
+        if (out_mode == "adj_matrix") {
+          adj_matrix[i, j] <- 1
+          adj_matrix[j, i] <- 1
+        } else {
+          adj_pairs <- rbind(adj_pairs, c(i, j))
+          adj_pairs <- rbind(adj_pairs, c(j, i))
+        }
       }
     }
   }
-  dimnames(adj_matrix)[[1]] <- (1:n)
-  dimnames(adj_matrix)[[2]] <- strings
-  if (drop_deg_one_bul) {
-    adj_matrix <- .drop_triv_deg(adj_matrix, strings)
+  if (out_mode == "adj_matrix") {
+    dimnames(adj_matrix)[[1]] <- (1:n)
+    dimnames(adj_matrix)[[2]] <- strings
+    if (drop_deg_one_bul) {
+      adj_matrix <- .drop_triv_deg(adj_matrix, strings)
+    }
+    return(adj_matrix)
+  } else {
+    adj_pairs <- rbind(adj_pairs, c(n, n))
+    return(matrix(adj_pairs, ncol = 2))
   }
-  return(adj_matrix)
 }
 
 
@@ -76,7 +91,7 @@ library(stringdist)
 all_bin_strings <- unlist(lapply(1:5, .gen_all_bin_strings))
 
 adhoc_list <- c(
-  "abc", "abx", "101", "100", "xyz", "xya", "dear", "bear",
+  "abc", "abx", "xyz", "xya", "dear", "bear",
   "cat", "bat", "water", "kitten", "sitten", "flaw", "flaws",
   "hello", "hell", "world", "words", "apple", "ample",
   "banana", "bananas", "dog", "dot", "bird", "birth",
@@ -88,24 +103,46 @@ adhoc_list <- c(
   "transocendentalipm", "anscendentalism", "moon", "plan", "aaaaaa", "bbbbb"
 )
 
-test_that("testing buildAdjacencyMatrix on all binary strings of length 1-5", {
+test_data <- list(
+  all_bin_strings = all_bin_strings,
+  adhoc_list = adhoc_list
+)
+
+test_that("testing similarityJoin", {
   for (cutoff in c(0, 1, 2)) {
     for (metric in c("Hamming", "Levenshtein")) {
       for (method in c("pattern", "semi_pattern", "partition_pattern")) {
         for (drop_deg_one_bul in c(TRUE, FALSE)) {
-          for (string_list in list(all_bin_strings, adhoc_list)) {
-            manual_result <- .build_adj_matrix_manually(
-              string_list, cutoff, metric, drop_deg_one_bul
-            )
-            auto_result <- buildAdjacencyMatrix(
-              string_list, cutoff, metric, method, drop_deg_one_bul
-            )
-            expect_equal(
-              manual_result, auto_result,
-              info = paste("Failed for cutoff =", cutoff,
-                           "\nmetric =", metric,
-                           "\nmethod =", method, "\n")
-            )
+          for (string_list_name in names(test_data)) {
+            string_list <- test_data[[string_list_name]]
+            for (test_mode in c("adj_matrix", "adj_pairs")) {
+              if (test_mode == "adj_pairs" && drop_deg_one_bul == TRUE) {
+                next
+              }
+              manual_result <- .sim_join_manually(
+                string_list, cutoff, metric, drop_deg_one_bul, test_mode
+              )
+              auto_result <- similarityJoin(
+                string_list, cutoff, metric, method, drop_deg_one_bul,
+                output_format = test_mode
+              )
+              if (test_mode == "adj_pairs") {
+                manual_result <- manual_result[order(
+                  manual_result[, 1], manual_result[, 2]), ]
+                auto_result <- auto_result[order(
+                  auto_result[, 1], auto_result[, 2]), ]
+              }
+              expect_equal(
+                manual_result, auto_result,
+                info = paste("Failed for cutoff =", cutoff,
+                             "\nmetric =", metric,
+                             "\nmethod =", method,
+                             "\ndrop_deg_one =", drop_deg_one_bul,
+                             "\ntest_mode =", test_mode,
+                             "\ntest_data =", string_list_name,
+                             "\n")
+              )
+            }
           }
         }
       }

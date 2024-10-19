@@ -71,7 +71,8 @@ void sim_search_semi_patterns(
   const std::vector<std::string>& strings,
   int cutoff,
   char metric,
-  arma::sp_umat& adj_matrix
+  str2ints& str2idxs,
+  int_pair_set& out
 );
 
 

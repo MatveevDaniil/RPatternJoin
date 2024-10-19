@@ -133,16 +133,14 @@ void sim_search_part_patterns(
   const std::vector<std::string>& strings,
   int cutoff,
   char metric,
-  arma::sp_umat& adj_matrix
+  str2ints& str2idxs,
+  int_pair_set& out
 ) {
   str2int str2idx;
-  str2ints str2idxs;
   countStrings(strings, str2idx, str2idxs);
 
-  int_pair_set idx_pairs;
   if (cutoff == 1)
-    sim_search_2parts(strings, metric, str2idx, idx_pairs, true, cutoff);
+    sim_search_2parts(strings, metric, str2idx, out, true, cutoff);
   else if (cutoff == 2)
-    sim_search_3parts(strings, metric, str2idx, idx_pairs, true, cutoff);
-  pairSetToAdjMatrix(idx_pairs, adj_matrix, strings, str2idxs);
+    sim_search_3parts(strings, metric, str2idx, out, true, cutoff);
 }

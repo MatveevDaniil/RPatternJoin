@@ -39,4 +39,11 @@ void pairSetToAdjMatrix(
   str2ints str2idxs
 );
 
+void pairSetToAdjPairs(
+  const int_pair_set& out,
+  std::vector<int>& adj_pairs,
+  const std::vector<std::string>& strings,
+  str2ints str2idxs
+);
+
 #endif // FILE_IO_HPP
