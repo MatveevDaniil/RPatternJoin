@@ -19,39 +19,41 @@
   Daniil Matveev <dmatveev@sfsu.edu>
 }
 \examples{
-  library(RPatternJoin)
+library(RPatternJoin)
 
-  ## Small example
+## Small example
 
-  similarityJoin(c("ABC", "AX", "QQQ"), 2, "Hamming", output_format = "adj_pairs")
-  #     [,1] [,2]
-  # [1,]    1    1
-  # [2,]    1    2
-  # [3,]    2    1
-  # [4,]    2    2
-  # [5,]    3    3
+similarityJoin(c("ABC", "AX", "QQQ"), 2, "Hamming", output_format = "adj_pairs")
+#       [,1] [,2]
+# [1,]    1    1
+# [2,]    1    2
+# [3,]    2    1
+# [4,]    2    2
+# [5,]    3    3
 
 
-  ## Larger example
+## Larger example
 
-  # The `edit_dist1_example` function generate a random list 
-  # of `num_strings` strings with the average string length=`avg_len`.
-  strings <- edit_dist1_example(avg_len = 25, num_strings = 5000)
+# The `edit_dist1_example` function generate a random list 
+# of `num_strings` strings with the average string length=`avg_len`.
+strings <- edit_dist1_example(avg_len = 25, num_strings = 5000)
 
-  # Firstly let's do it with `stringdist` package.
-  library(stringdist)
-  unname(system.time({
-    which(stringdist::stringdistmatrix(strings, strings, "lv") <= 1, arr.ind = TRUE)
-  })["elapsed"])
-  # Runtime on macOS machine with 2.2 GHz i7 processor and 16GB of DDR4 RAM:
-  # [1] 63.773
-  
-  # Now let's do it with similarityJoin function.
-  unname(system.time({
-    similarityJoin(strings, 1, "Levenshtein", output_format = "adj_pairs")
-  })["elapsed"])
-  # Runtime on the same machine:
-  # [1] 0.105
+# Firstly let's do it with `stringdist` package.
+\dontrun{
+library(stringdist)
+unname(system.time({
+  which(stringdist::stringdistmatrix(strings, strings, "lv") <= 1, arr.ind = TRUE)
+})["elapsed"])
+# Runtime on macOS machine with 2.2 GHz i7 processor and 16GB of DDR4 RAM:
+# [1] 63.773
+}
+
+# Now let's do it with similarityJoin function.
+unname(system.time({
+  similarityJoin(strings, 1, "Levenshtein", output_format = "adj_pairs")
+})["elapsed"])
+# Runtime on the same machine:
+# [1] 0.105
 }
 \seealso{
   \code{\link[=similarityJoin]{similarityJoin}},

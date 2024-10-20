@@ -163,6 +163,7 @@ edit_dist1_example <- function(avg_len = 25, num_strings = 5000) {
 #' strings <- edit_dist1_example(avg_len = 25, num_strings = 5000)
 #'
 #' # Firstly let's do it with `stringdist` package.
+#' \dontrun{
 #' library(stringdist)
 #' system.time({
 #'   which(stringdist::stringdistmatrix(strings, strings, "lv") <= 1, arr.ind = TRUE)
@@ -170,6 +171,7 @@ edit_dist1_example <- function(avg_len = 25, num_strings = 5000) {
 #' # Runtime on macOS machine with 2.2 GHz i7 processor and 16GB of DDR4 RAM:
 #' # elapsed
 #' # 63.773
+#' }
 #'
 #' # Now let's do it with similarityJoin function.
 #' system.time({
