@@ -51,7 +51,6 @@
 #' @export
 edit_dist1_example <- function(avg_len = 25, num_strings = 5000) {
   n <- ceiling(num_strings / 5)
-  set.seed(123)
   generate_string <- function(avg_len_ = avg_len) {
     letters <- c(letters)
     length <- rpois(1, lambda = avg_len_)
@@ -163,7 +162,7 @@ edit_dist1_example <- function(avg_len = 25, num_strings = 5000) {
 #' strings <- edit_dist1_example(avg_len = 25, num_strings = 5000)
 #'
 #' # Firstly let's do it with `stringdist` package.
-#' \dontrun{
+#' \donttest{
 #' library(stringdist)
 #' system.time({
 #'   which(stringdist::stringdistmatrix(strings, strings, "lv") <= 1, arr.ind = TRUE)

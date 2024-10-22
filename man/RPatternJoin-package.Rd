@@ -39,7 +39,7 @@ similarityJoin(c("ABC", "AX", "QQQ"), 2, "Hamming", output_format = "adj_pairs")
 strings <- edit_dist1_example(avg_len = 25, num_strings = 5000)
 
 # Firstly let's do it with `stringdist` package.
-\dontrun{
+\donttest{
 library(stringdist)
 unname(system.time({
   which(stringdist::stringdistmatrix(strings, strings, "lv") <= 1, arr.ind = TRUE)

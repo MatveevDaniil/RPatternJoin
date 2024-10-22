@@ -106,7 +106,7 @@ similarityJoin(
 strings <- edit_dist1_example(avg_len = 25, num_strings = 5000)
 
 # Firstly let's do it with `stringdist` package.
-\dontrun{
+\donttest{
 library(stringdist)
 system.time({
   which(stringdist::stringdistmatrix(strings, strings, "lv") <= 1, arr.ind = TRUE)

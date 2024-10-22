@@ -2,11 +2,26 @@
 
 ## Submission Summary
 
-This is the second submission of the `RPatternJoin-1.0.0` package to CRAN. In this submission, I addressed the concerns of the reviewer about the previous attempt (see 'Answers on review comments' section). I also rerun all previous checks (see 'Test Info' section).
+This is the third attempt to submit the `RPatternJoin-1.0.0` package to CRAN. I addressed the reviewer's concerns about the previous attempt (see 'Answers on attempt 2 review comments' section) and reran all previous checks (see 'Test Info' section).
 
-The package provides tools for string similarity joins for Hamming and Levenshtein distances.
+## Answers on attempt 2 review comments:
 
-## Answers on review comments:
+Dear Konstanze Lauseker, 
+Thank you for reviewing my previous attempt I fixed the issues you pointed me on.
+
+### \dontrun block
+comment: _Please unwrap the examples if they are executable in < 5 sec, or replace
+dontrun{} with \donttest{}._
+
+response: Changed on \donttest.
+
+### fixed seed
+comment: _Please do not set a seed to a specific number within a function. ->
+R/SimilarityJoin.R_
+
+response: Deleted it.
+
+## Answers on attempt 1 review comments:
 
 Dear Beni Altmann thank you for reviewing my previous submission, here are my answers to your comments:
 
